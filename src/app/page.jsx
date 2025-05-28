@@ -14,26 +14,13 @@ export default function Home() {
   const [resLink, setResLink] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // const fullUrl = `https://preview.pradipta.dev/${ip}/https://${host}`;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ host, ip }),
-    };
-
-    try {
-      const response = await fetch(url, requestOptions);
-      const data = await response.json();
-      setResLink(data.preview_url);
-      console.log(data.preview_url);
-    } catch (error) {
-      console.error("Error fetching preview URL:", error);
-    } finally {
-      setLoading(false);
-    }
+    setResLink(`${url}/${ip}/https://${host}`);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -61,7 +48,7 @@ export default function Home() {
               <Label htmlFor="host">Host</Label>
               <Input
                 type="text"
-                placeholder="sandri.my.id"
+                placeholder="pradipta.dev"
                 value={host}
                 onChange={(e) => setHost(e.target.value)}
                 required
@@ -71,7 +58,7 @@ export default function Home() {
               <Label htmlFor="ip">IP</Label>
               <Input
                 type="text"
-                placeholder="103.163.138.33"
+                placeholder="1.1.1.1"
                 value={ip}
                 onChange={(e) => setIp(e.target.value)}
                 required
