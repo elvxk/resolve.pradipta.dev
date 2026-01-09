@@ -14,12 +14,10 @@ export default function Home() {
   const [resLink, setResLink] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // const fullUrl = `https://preview.pradipta.dev/${ip}/https://${host}`;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setResLink(`${url}/${ip}/https://${host}`);
+    setResLink(`${url}/${ip}/${host}`);
     setLoading(false);
   };
 
@@ -69,12 +67,11 @@ export default function Home() {
         </form>
 
         {resLink && (
-          <div className="w-full max-w-[100vw] h-[80vh] shadow-lg border rounded-xl overflow-hidden">
+          <div className="w-full max-w-[100vw] h-[80vh] shadow-lg border-4 rounded-xl overflow-hidden">
             {resLink && (
               <iframe
                 src={resLink}
                 className="w-full h-full"
-                frameBorder="0"
                 allowFullScreen
               ></iframe>
             )}
