@@ -8,6 +8,7 @@ import elvxk from "./elvxk";
 
 export default function Home() {
   const url = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
 
   const [host, setHost] = useState("");
   const [ip, setIp] = useState("");
@@ -17,7 +18,9 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setResLink(`${url}/${ip}/${host}`);
+
+    setResLink(`${baseUrl}/${ip}/${host}`);
+    // setResLink(`${url}/${ip}/${host}`);
     setLoading(false);
   };
 
